@@ -1,0 +1,18 @@
+[package]
+name = "sengled"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+async-dropper = { version = "0.3.1", features = ["tokio", "simple"] }
+async-trait = "0.1.77"
+chrono = "0.4.32"
+reqwest = { version = "0.11.23", features = ["json"] }
+rumqttc = { git = "https://github.com/bytebeamio/rumqtt.git", features = ["websocket"] }
+serde = { version = "1.0.195", features = ["derive"] }
+serde_json = "1.0.111"
+thiserror = "1.0.56"
+tokio = { version = "1.35.1", features = ["full"] }
+url = "2.5.0"
