@@ -2,13 +2,11 @@ use std::{collections::HashMap, fmt};
 
 use serde::{
     de::{SeqAccess, Visitor},
-    Deserialize, Deserializer,
+    Deserialize, Deserializer, Serialize,
 };
 
-use crate::{Client, Error};
-
 /// A device provided by the Sengled API.
-#[derive(Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Device {
     pub category: String,
 
@@ -39,22 +37,22 @@ impl Device {
             .unwrap_or(default)
     }
 
-    /// Set an attribute on this device. This function will call [`Client::set_device_attribute`]
-    /// and update the attribute locally on this object.
-    pub async fn set_attribute(
-        &mut self,
-        client: &Client,
-        attribute: impl Into<String>,
-        value: impl Into<String>,
-    ) -> Result<(), Error> {
-        let att = attribute.into();
-        let val = value.into();
+    // /// Set an attribute on this device. This function will call [`Client::set_device_attribute`]
+    // /// and update the attribute locally on this object.
+    // pub async fn set_attribute(
+    //     &mut self,
+    //     client: &Client,
+    //     attribute: impl Into<String>,
+    //     value: impl Into<String>,
+    // ) -> Result<(), Error> {
+    //     let att = attribute.into();
+    //     let val = value.into();
 
-        client.set_device_attribute(&self.mac, &att, &val).await?;
-        self.attributes.insert(att, val);
+    //     client.set_device_attribute(&self.mac, &att, &val).await?;
+    //     self.attributes.insert(att, val);
 
-        Ok(())
-    }
+    //     Ok(())
+    // }
 }
 
 fn deserialize_attribute_list<'de, D: Deserializer<'de>>(

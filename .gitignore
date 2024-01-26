@@ -1,2 +1,3 @@
 /target
-examples/local.rs
+**/examples/local.rs
+config.yml
