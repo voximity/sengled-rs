@@ -10,14 +10,14 @@ use serde::{
 pub struct Device {
     pub category: String,
 
-    #[serde(rename = "deviceUuid")]
+    #[serde(rename(deserialize = "deviceUuid"))]
     pub mac: String,
 
-    #[serde(rename = "typeCode")]
+    #[serde(rename(deserialize = "typeCode"))]
     pub type_code: String,
 
     #[serde(
-        rename = "attributeList",
+        rename(deserialize = "attributeList"),
         deserialize_with = "deserialize_attribute_list"
     )]
     pub attributes: HashMap<String, String>,
@@ -36,23 +36,6 @@ impl Device {
             .map(String::as_str)
             .unwrap_or(default)
     }
-
-    // /// Set an attribute on this device. This function will call [`Client::set_device_attribute`]
-    // /// and update the attribute locally on this object.
-    // pub async fn set_attribute(
-    //     &mut self,
-    //     client: &Client,
-    //     attribute: impl Into<String>,
-    //     value: impl Into<String>,
-    // ) -> Result<(), Error> {
-    //     let att = attribute.into();
-    //     let val = value.into();
-
-    //     client.set_device_attribute(&self.mac, &att, &val).await?;
-    //     self.attributes.insert(att, val);
-
-    //     Ok(())
-    // }
 }
 
 fn deserialize_attribute_list<'de, D: Deserializer<'de>>(
