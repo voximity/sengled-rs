@@ -10,7 +10,7 @@ chrono = "0.4.32"
 regex = "1.10.3"
 regex-macro = "0.2.0"
 reqwest = { version = "0.11.23", features = ["json"] }
-rumqttc = { git = "https://github.com/bytebeamio/rumqtt.git", features = ["websocket"] }
+rumqttc = { version = "0.24", features = ["websocket"] }
 serde = { version = "1.0.195", features = ["derive"] }
 serde_json = "1.0.111"
 thiserror = "1.0.56"
