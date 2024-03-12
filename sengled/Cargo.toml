@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2021"
 authors = ["voximity <me@zanderf.net>"]
 description = "Tiny API wrapper over Sengled smart devices"
+license = "MIT"
 
 [dependencies]
 chrono = "0.4.32"
